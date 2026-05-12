@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gmail Farmer Bot — Earn Money on Telegram</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff; --bg2: #f5f5f4;
+      --text: #1c1c1a; --text2: #6b7280; --text3: #9ca3af;
+      --border: rgba(0,0,0,0.1);
+      --tg: #229ED9; --tg-hover: #1a8bbf;
+      --warn-bg: #fffbeb; --warn-border: #fcd34d; --warn-text: #92400e;
+      --success-bg: #f0fdf4; --success-text: #166534;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; border-bottom: 1px solid var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; color: var(--text); text-decoration: none; }
+    .nav-logo svg { width: 28px; height: 28px; }
+    nav a.nav-cta { background: var(--tg); color: #fff; text-decoration: none; padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; }
+    nav a.nav-cta:hover { background: var(--tg-hover); }
+
+    .hero { text-align: center; padding: 5rem 1.5rem 3.5rem; max-width: 640px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: var(--success-bg); color: var(--success-text); font-size: 13px; font-weight: 500; padding: 5px 14px; border-radius: 99px; margin-bottom: 1.25rem; }
+    .hero h1 { font-size: 38px; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+    .hero h1 span { color: var(--tg); }
+    .hero p { font-size: 16px; color: var(--text2); max-width: 460px; margin: 0 auto 2rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 9px; background: var(--tg); color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 10px; font-size: 16px; font-weight: 500; transition: background 0.2s; }
+    .btn-primary:hover { background: var(--tg-hover); }
+    .btn-primary svg { width: 20px; height: 20px; }
+
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; max-width: 760px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+    .stat-card { background: var(--bg2); border-radius: 12px; padding: 1.25rem; text-align: center; }
+    .stat-num { font-size: 26px; font-weight: 600; }
+    .stat-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+
+    section { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.5rem; border-top: 1px solid var(--border); }
+    section h2 { font-size: 22px; font-weight: 600; margin-bottom: 1.25rem; }
+
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step { display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+    .step-num { width: 30px; height: 30px; border-radius: 50%; background: #e0f2fe; color: #0369a1; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step strong { display: block; font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .step span { font-size: 13px; color: var(--text2); }
+
+    .earn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .earn-card { border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; background: #fff; }
+    .earn-icon { width: 40px; height: 40px; border-radius: 10px; background: #e0f2fe; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .earn-icon svg { width: 20px; height: 20px; }
+    .earn-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .earn-card p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+    .pay-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pay-pill { background: var(--bg2); border: 1px solid var(--border); border-radius: 99px; padding: 6px 14px; font-size: 13px; color: var(--text2); }
+
+    .warning { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 10px; padding: 1rem 1.25rem; font-size: 13px; color: var(--warn-text); line-height: 1.6; }
+    .warning strong { font-weight: 600; }
+
+    .footer-cta { text-align: center; padding: 3rem 1.5rem; background: var(--bg2); border-top: 1px solid var(--border); }
+    .footer-cta h2 { font-size: 22px; font-weight: 600; margin-bottom: 0.5rem; }
+    .footer-cta p { font-size: 14px; color: var(--text2); margin-bottom: 1.5rem; }
+
+    footer { text-align: center; padding: 1.5rem; font-size: 12px; color: var(--text3); border-top: 1px solid var(--border); }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 26px; }
+      nav { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#229ED9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+      Gmail Farmer Bot
+    </a>
+    <a class="nav-cta" href="https://t.me/GmailFarmerBot?start=5358311383" target="_blank">Join Now</a>
+  </nav>
+
+  <div class="hero">
+    <div class="badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="#166534"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      Active &amp; Paying — 3+ Years
+    </div>
+    <h1>Earn money by creating <span>Gmail accounts</span></h1>
+    <p>Join over 497,000 monthly users. No investment, no personal data. Just create accounts and get paid in crypto.</p>
+    <a class="btn-primary" href="https://t.me/GmailFarmerBot?start=5358311383" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Start Earning on Telegram
+    </a>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="stat-num">497K+</div><div class="stat-label">Monthly users</div></div>
+    <div class="stat-card"><div class="stat-num">$0.145</div><div class="stat-label">Per Gmail created</div></div>
+    <div class="stat-card"><div class="stat-num">$1.00</div><div class="stat-label">Min. withdrawal</div></div>
+    <div class="stat-card"><div class="stat-num">Free</div><div class="stat-label">No investment needed</div></div>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div><strong>Open the bot on Telegram</strong><span>Click the button above to open @GmailFarmerBot. No sign-up form, no personal data required.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div><strong>Receive account details</strong><span>The bot gives you a name, username, and password to use when creating a Gmail account.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div><strong>Create the Gmail account</strong><span>Go to Gmail, create the account using the provided details, then return to the bot and confirm.</span></div></div>
+      <div class="step"><div class="step-num">4</div><div><strong>Collect your earnings</strong><span>Your balance is updated instantly. Repeat as many times as you like. Withdraw when you're ready.</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ways to earn</h2>
+    <div class="earn-grid">
+      <div class="earn-card">
+        <div class="earn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+        <h3>Create Gmail accounts</h3>
+        <p>Earn $0.145 for every Gmail account you successfully register using the bot's details. No limit per day.</p>
+      </div>
+      <div class="earn-card">
+        <div class="earn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Referral program</h3>
+        <p>Share your unique link and earn a commission for every active user who joins and starts creating accounts.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Payment methods</h2>
+    <div class="pay-list">
+      <span class="pay-pill">USDT (BEP20)</span>
+      <span class="pay-pill">TRON (TRX)</span>
+      <span class="pay-pill">Litecoin (LTC)</span>
+      <span class="pay-pill">Bitcoin Cash (BCH)</span>
+      <span class="pay-pill">DASH</span>
+      <span class="pay-pill">Dogecoin (DOGE)</span>
+      <span class="pay-pill">XRP</span>
+      <span class="pay-pill">Telegram Stars ⭐</span>
+      <span class="pay-pill">Payeer</span>
+      <span class="pay-pill">AdvCash</span>
+      <span class="pay-pill">CryptoBot</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Important information</h2>
+    <div class="warning">
+      <strong>⚠️ Please read before joining:</strong> Creating Gmail accounts for third parties may violate Google's Terms of Service. The bot operators are anonymous. Payments may stop at any time. Participate only if you understand and accept these risks.
+    </div>
+  </section>
+
+  <div class="footer-cta">
+    <h2>Ready to start earning?</h2>
+    <p>Join for free on Telegram — no investment, no personal data required.</p>
+    <a class="btn-primary" href="https://t.me/GmailFarmerBot?start=5358311383" target="_blank">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Open GmailFarmerBot
+    </a>
+  </div>
+
+  <footer>
+    <p>This site includes a referral link. By clicking "Join Now" you join via the site owner's referral.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener("click", function(e) {
+        var target = document.querySelector(this.getAttribute("href"));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: "smooth" }); }
+      });
+    });
+  </script>
+
+</body>
+</html>
